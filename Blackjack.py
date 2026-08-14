@@ -31,6 +31,18 @@ def computerGameLoop(hand):
     return hand
 
 
+def checkAces(hand):
+    if sum(hand) > 21:
+        if not 11 in hand:
+            return hand
+        else:
+            index = hand.index(11)
+            hand[index] = 1
+            return hand
+    else:
+        return hand 
+
+
 while not done:
     play = input("Do you want to play a game of Blackjack? Type 'y' or 'n':  ").lower()
     if play == "n":
@@ -51,12 +63,14 @@ while not done:
     else:
         print(f"\tComputer's first card:  {computerHand[1]}")
         userHand = userGameLoop(userHand)
+        userHand = checkAces(userHand)
         if sum(userHand) > 21:
             print(f"\tYour final cards:  {userHand}, final score:  {sum(userHand)}")
             print(f"\tComputer's final hand: {computerHand[1]}")
             print("You went over, you lose")
             continue
         computerHand = computerGameLoop(computerHand)
+        computerHand = checkAces(computerHand)
 
         if sum(computerHand) > 21:
             print(f"\tYour final cards:  {userHand}, final score:  {sum(userHand)}")
