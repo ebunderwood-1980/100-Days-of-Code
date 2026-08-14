@@ -7,11 +7,12 @@ done = False
 userHand = []
 computerHand = []
 
+
 def userGameLoop(hand):
     stay = False
     while not stay:
         take_hit = input("Type 'y' to get another card, type 'n' to pass:  ").lower()
-        if take_hit == 'y':
+        if take_hit == "y":
             hand.append(random.choices(cards, k=1)[0])
             if sum(hand) > 21:
                 return hand
@@ -22,11 +23,13 @@ def userGameLoop(hand):
             stay = True
     return hand
 
+
 def computerGameLoop(hand):
-    while sum(hand)<=17:
+    while sum(hand) <= 17:
         hand.append(random.choices(cards, k=1)[0])
-    
+
     return hand
+
 
 while not done:
     play = input("Do you want to play a game of Blackjack? Type 'y' or 'n':  ").lower()
@@ -48,10 +51,28 @@ while not done:
     else:
         print(f"\tComputer's first card:  {computerHand[1]}")
         userHand = userGameLoop(userHand)
+        if sum(userHand) > 21:
+            print(f"\tYour final cards:  {userHand}, final score:  {sum(userHand)}")
+            print(f"\tComputer's final hand: {computerHand[1]}")
+            print("You went over, you lose")
+            continue
         computerHand = computerGameLoop(computerHand)
 
+        if sum(computerHand) > 21:
+            print(f"\tYour final cards:  {userHand}, final score:  {sum(userHand)}")
+            print(
+                f"\tComputer's final hand: {computerHand}, final score:  {sum(computerHand)}"
+            )
+            print("Computer went over, you win")
+            continue
+
         print(f"\tYour final cards:  {userHand}, final score:  {sum(userHand)}")
-        print(f"\tComputer's final hand:  {computerHand}, final score: {sum(computerHand)}")
-        
-       
-    
+        print(
+            f"\tComputer's final hand:  {computerHand}, final score: {sum(computerHand)}"
+        )
+        if sum(userHand) > sum(computerHand):
+            print("You win!")
+        elif sum(userHand) < sum(computerHand):
+            print("You lose")
+        else:
+            print("You draw")
