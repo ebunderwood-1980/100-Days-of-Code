@@ -9,4 +9,7 @@ for question in question_data:
     question_answer = question["answer"]
     question_bank.append(Question(question_text, question_answer))
 
-my_quiz_brain = QuizBrain(question_bank)
+quiz = QuizBrain(question_bank)
+
+while quiz.still_has_questions():
+    quiz.next_question()
