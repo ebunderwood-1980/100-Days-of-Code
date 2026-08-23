@@ -30,6 +30,15 @@ class Snake:
             self.snake[segment_number].goto(new_x, new_y)
         self.head.forward(MOVE_DISTANCE)
 
+    def extend(self):
+        new_piece = Turtle()
+        new_piece.shape("square")
+        new_piece.color("white")
+        new_piece.penup()
+        position = self.snake[-1].position()
+        new_piece.goto(position)
+        self.snake.append(new_piece)
+
     def up(self):
         if self.head.heading() != DOWN:
             self.head.setheading(90)
