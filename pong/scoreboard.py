@@ -4,23 +4,27 @@ from turtle import Turtle
 class Scoreboard(Turtle):
     def __init__(self):
         super().__init__()
-        self.score = 0
+        self.user_score = 0
+        self.computer_score = 0
         self.penup()
         self.goto(0, 280)
         self.color("white")
         self.write(
-            f"Score: {self.score}",
+            f"You: {self.user_score}   Computer: {self.computer_score} ",
             move=False,
             align="center",
             font=("Arial", 14, "bold"),
         )
         self.hideturtle()
 
-    def update_score(self):
-        self.score += 1
+    def update_score(self, x):
+        if x == "u":
+            self.user_score += 1
+        else:
+            self.computer_score += 1
         self.clear()
         self.write(
-            f"Score: {self.score}",
+            f"You: {self.user_score}   Computer: {self.computer_score}",
             move=False,
             align="center",
             font=("Arial", 14, "bold"),

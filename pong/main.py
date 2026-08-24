@@ -2,6 +2,7 @@ from turtle import Screen, Turtle
 import time
 from scoreboard import Scoreboard
 from paddle import Paddle
+from pongball import Ball
 
 # Set up the game window
 game_window = Screen()
@@ -11,6 +12,9 @@ game_window.title("My Game of Pong")
 
 # Set up the score board
 scoreboard = Scoreboard()
+
+# Set up the ball
+game_ball = Ball()
 
 # Set up the user paddle on the left hand side and the computer paddle on the right hand side.  Set up the net in the middle of the screen.
 game_window.tracer(0)
@@ -42,6 +46,24 @@ game_window.tracer(0)
 while not game_over:
     game_window.update()
     time.sleep(0.01)
+    game_ball.move()
+
+    # Ball top wall logic
+    if game_ball.ball.ycor() >= 280 or game_ball.ball.ycor() <= -280:
+        game_ball.ball.setheading(game_ball.ball.heading() * -1)
+
+    # Ball scoring logic
+    if game_ball.ball.xcor() >= 280:
+        ball_y_coord = game_ball.ball.ycor()
+        for segment in user_paddle.paddle:
+            if segment.ycor() == ball_y_coord:
+                game_ball.ball.setheading(game_ball.ball.heading() * -1)
+                break
+        scoreboard.update_score("u")
+        game_ball.reset()
+    if game_ball.ball.xcor() <= -280:
+        scoreboard.update_score("c")
+        game_ball.reset()
 
 
 # Exit game
