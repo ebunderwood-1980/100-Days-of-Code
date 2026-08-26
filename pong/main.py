@@ -2,6 +2,7 @@ from turtle import Screen
 import constants as C
 from paddle import Paddle
 from ball import Ball
+from scoreboard import Scoreboard
 import time
 
 # Create the Screen
@@ -17,6 +18,9 @@ computer_paddle = Paddle(350)
 
 # Create the game ball
 ball = Ball()
+
+# Create the scoreboard
+scoreboard = Scoreboard()
 
 # Listens for movement key presses for both paddles.
 pong_table.listen()
@@ -43,14 +47,21 @@ while not done:
     # Detect ball collision with the paddle
     if ball.distance(computer_paddle) < 50 and ball.xcor() > 320:
         ball.bounceX()
+        ball.xmove -= 2  #  Increases ball speed if ball hits paddle
     if ball.distance(user_paddle) < 50 and ball.xcor() < -320:
         ball.bounceX()
+        ball.xmove += 2  # Increases ball speed if ball hits paddle.
 
     # Detect scoring events
     if ball.xcor() > 380:
+        scoreboard.update_user()
         ball.new_point()
+        ball.xmove = -10  # Reset ball speed.
+
     if ball.xcor() < -380:
+        scoreboard.update_computer()
         ball.new_point()
+        ball.xmove = 10  # Reset ball speed.
 
 
 # Keep the screen from disappearing
