@@ -6,7 +6,6 @@ class Ball(Turtle):
     def __init__(self):
         super().__init__()
         self.shape("circle")
-        self.shapesize(stretch_wid=2, stretch_len=2)
         self.color("red")
         self.penup()
         self.xmove = 10
@@ -23,3 +22,7 @@ class Ball(Turtle):
 
     def bounceX(self):
         self.xmove *= -1
+
+    def new_point(self):
+        self.home()
+        self.bounceX()

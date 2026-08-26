@@ -29,6 +29,7 @@ pong_table.onkey(key="j", fun=computer_paddle.move_down)
 pong_table.onkey(key="q", fun=pong_table.bye)
 
 done = False
+
 while not done:
     pong_table.update()
     time.sleep(0.1)
@@ -40,10 +41,17 @@ while not done:
         ball.bounceY()
 
     # Detect ball collision with the paddle
-    if ball.distance(computer_paddle) and ball.xcor() > 310:
+    if ball.distance(computer_paddle) < 50 and ball.xcor() > 320:
         ball.bounceX()
-    if ball.distance(user_paddle) and ball.xcor() < -310:
+    if ball.distance(user_paddle) < 50 and ball.xcor() < -320:
         ball.bounceX()
+
+    # Detect scoring events
+    if ball.xcor() > 380:
+        ball.new_point()
+    if ball.xcor() < -380:
+        ball.new_point()
+
 
 # Keep the screen from disappearing
 pong_table.exitonclick()
