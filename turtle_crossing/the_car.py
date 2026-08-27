@@ -11,7 +11,7 @@ class TheCar(Turtle):
         self.color(random.choice(color))
         self.shapesize(1, 2)
         self.penup()
-        self.x_speed = 5
+        self.x_speed = 10
         starting_y = random.randint(-290, 290)
         self.goto(320, starting_y)
 
