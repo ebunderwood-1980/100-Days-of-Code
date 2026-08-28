@@ -4,8 +4,7 @@ from turtle import Turtle
 class Scoreboard(Turtle):
     def __init__(self):
         super().__init__()
-        self.user_score = 0
-        self.computer_score = 0
+        self.score = 0
         self.penup()
         self.goto(0, 300)
         self.color("white")
