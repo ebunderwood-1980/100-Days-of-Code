@@ -15,8 +15,16 @@ with open("./Input/Names/invited_names.txt") as input_file:
 cleaned_list = [item.strip() for item in names_list]
 
 # TODO Pull out the letter out of ./Input/Letters/starting_letter and store it in template
+with open("./Input/Letters/starting_letter.txt") as template_file:
+    letter_template = template_file.read()
 
 
 # TODO For each name in name list, pull out name, paste it in template, and save to ./Output/ReadyToSend/letter_for_<person>.txt
+
+for name in cleaned_list:
+    new_letter = letter_template.replace("[name]", name)
+    new_filename = f"letter_for_{name}.txt"
+    with open(f"./Output/ReadyToSend/{new_filename}", mode="w") as file:
+        file.write(new_letter)
 
 # TODO Collect your loot!
