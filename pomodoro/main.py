@@ -49,7 +49,7 @@ stop_button = Button()
 stop_button.config(
     text="Stop",
     font=(FONT_NAME, 8, "bold"),
-    bg=YELLOW,
+    bg="white",
     fg="blue",
 )
 stop_button.place(x=225, y=213)
