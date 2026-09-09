@@ -1,9 +1,78 @@
 from tkinter import *  # noqa F403, F405
+from tkinter import messagebox
+from random import choice, randint, shuffle
 
 
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 def generate():
-    print("Generate Button Pressed")
+    letters = [
+        "a",
+        "b",
+        "c",
+        "d",
+        "e",
+        "f",
+        "g",
+        "h",
+        "i",
+        "j",
+        "k",
+        "l",
+        "m",
+        "n",
+        "o",
+        "p",
+        "q",
+        "r",
+        "s",
+        "t",
+        "u",
+        "v",
+        "w",
+        "x",
+        "y",
+        "z",
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G",
+        "H",
+        "I",
+        "J",
+        "K",
+        "L",
+        "M",
+        "N",
+        "O",
+        "P",
+        "Q",
+        "R",
+        "S",
+        "T",
+        "U",
+        "V",
+        "W",
+        "X",
+        "Y",
+        "Z",
+    ]
+    numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+    symbols = ["!", "#", "$", "%", "&", "(", ")", "*", "+"]
+
+    password_letters = [choice(letters) for _ in range(randint(8, 10))]
+    password_symbols = [choice(symbols) for _ in range(randint(2, 4))]
+    password_numbers = [choice(numbers) for _ in range(randint(2, 4))]
+
+    password_list = password_letters + password_symbols + password_numbers
+
+    shuffle(password_list)
+
+    password = "".join(password_list)
+
+    password_entry.insert(0, password)
 
 
 # ---------------------------- SAVE PASSWORD -------------------------------
@@ -13,15 +82,30 @@ def add_password():
     email = email_entry.get()
     password = password_entry.get()
 
-    # Write the info to the file.
-    with open("data.txt", "a") as password_storage:
-        user_info = f"{website}  |  {email}  |  {password}\n"
-        password_storage.write(user_info)
+    if len(website) == 0:
+        messagebox.showwarning(title="Warning", message="Your website entry is missing")
+    elif len(password) == 0:
+        messagebox.showwarning(
+            title="Warning", message="Your password entry is missing"
+        )
+    else:
 
-    # Clear the entry fields and focus back on the website
-    website_entry.delete(0, END)
-    password_entry.delete(0, END)
-    website_entry.focus()
+        message_box_confirmation = messagebox.askokcancel(
+            title=website,
+            message=f"Data Entered: \nEmail: {email}\nPassword: {password}\nOkay to save?",
+        )
+
+        if message_box_confirmation:
+
+            # Write the info to the file.
+            with open("data.txt", "a") as password_storage:
+                user_info = f"{website}  |  {email}  |  {password}\n"
+                password_storage.write(user_info)
+
+            # Clear the entry fields and focus back on the website
+            website_entry.delete(0, END)
+            password_entry.delete(0, END)
+            website_entry.focus()
 
 
 # ---------------------------- UI SETUP ------------------------------- #
