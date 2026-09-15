@@ -1,0 +1,37 @@
+------- Create the Environment ----------
+cd path\to\your\project
+python -m venv .venv
+
+---------- Set the Execution Policy ----------
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process
+
+
+---------- Activate the Environment ----------
+.\.venv\Scripts\Activate.ps1
+
+
+---------- Verification ---------
+gcm python --> Should point directly inside your projects .venv\Scripts\
+
+
+
+----------- Setting Environmental Variables ----------
+
+
+1. The Environment FileCreate a file named .env in your project's root folder and paste the following content:
+MY_API_KEY=your_secret_key_here
+DATABASE_URL=localhost:5432
+
+2. Terminal SetupRun this command in your Windows 10 terminal (works in both CMD and PowerShell) to install the required library:
+pip install python-dotenv
+
+3. The Python TemplatePaste this at the very beginning of your main.py (or your main execution script) to automatically load and read the variables:
+import os
+from dotenv import load_dotenv
+
+# Automatically finds and loads the .env file from the current directory
+load_dotenv()
+
+# Example: Accessing your environment variables
+api_key = os.environ.get("MY_API_KEY")
+db_url = os.environ.get("DATABASE_URL")
