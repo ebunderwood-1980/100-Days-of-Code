@@ -57,4 +57,5 @@ if bring_umbrella:
 
     print(message.status)
 
-    # You can use PythonAnywhere.com to run a python program on a daily schedule.
+    # You can use PythonAnywhere.com to run a python program on a daily schedule.  Adding this to test.
+    #
