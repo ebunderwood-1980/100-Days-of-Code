@@ -7,29 +7,27 @@ from dotenv import load_dotenv
 load_dotenv()
 
 SHEETY_PRICES_ENDPOINT = os.environ["SHEETY_ENDPOINT"]
-SHEETY_TOKEN = os.environ["TOKEN"]
 
 
 class DataManager:
     def __init__(self):
-        self._authorization = {
-            "Authorization": SHEETY_TOKEN,
-        }
+        self._user = os.environ["SHEETY_USERNAME"]
+        self._password = os.environ["SHEETY_PASSWORD"]
+        self._authorization = HTTPBasicAuth(self._user, self._password)
         self.destination_data = {}
 
     def get_destination_data(self):
-        # 2. Use the Sheety API to GET all the data in that sheet and print it out.
-        response = requests.get(url=SHEETY_PRICES_ENDPOINT, headers=self._authorization)
-        response.raise_for_status()
+        response = requests.get(url=SHEETY_PRICES_ENDPOINT, auth=self._authorization)
         data = response.json()
-        self.destination_data = data
+        self.destination_data = data["sheet1"]
         return self.destination_data
 
-    def update_lowest_price(self, row_id, price):
-        new_data = {"sheet1": {"lowestPrice": price}}
-        response = requests.put(
+    # ==================== Updated the price in the spreadsheet ====================
+
+    def update_lowest_price(self, row_id, new_price):
+        new_data = {"price": {"lowestPrice": new_price}}
+        requests.put(
             url=f"{SHEETY_PRICES_ENDPOINT}/{row_id}",
             json=new_data,
-            headers=self._authorization,
+            auth=self._authorization,
         )
-        response.raise_for_status()
