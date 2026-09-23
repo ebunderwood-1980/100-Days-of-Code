@@ -1,0 +1,82 @@
+------ HTML Boilerplate ------
+
+<!DOCTYPE html>
+<html lang="en">                      Opening tag
+
+	<head>
+		<meta charset="UTF-8">
+		<title>My Website</title>     Shows text that will appear in tab bar
+	</head>
+
+	<body>
+		<h1> Hello World </h>	      Most elements go here.
+	</body>
+
+</html>                               Closing tag
+
+
+
+! INFO !   VSCode shortcut to enter HTML BoilerPlate is by typing "!" and selecting the first option.
+           You should remove the IE tag though as Explorer has been depracated.
+
+
+------ Build your own burger -----
+<!DOCTYPE html>
+<bun topping = "sesame">
+	<tomato>
+		<cheese></cheese>
+	</tomato>
+	<lettuce>
+		<sauce>
+			<meat></meat>
+		</sauce>
+	</lettuce>
+</bun>
+
+
+
+
+------ Lists - Ordered and Unordered -------
+
+
+--> Unordered List (Gives you a bullet pointed list)
+<ul>
+	<li> Milk </li>
+	<li> Eggs </li>
+	<li> Bread </ul>
+</ul>
+
+
+--> Ordered List (Gives you a numbered list)
+<ol>
+	<li> Milk </li>
+	<li> Eggs </li>
+	<li> Bread </li>
+</ol>
+
+--> Nesting within a list
+<ul>
+	<li> Item 1 </li>
+	<li> Item 2 </li>
+		<ol>
+			<li> Sub list 1 </li>
+			<li> Sub LIst 2 </li>
+		</ol>
+	<li> Item 3 </li>
+</ul>
+
+
+
+--------- Anchor Element --------
+<a href="http://www.google.com"> This is a link </a>
+	Multiple Attributes:  <tag attribute = value anotherAttribute = value> Content </tag>
+<a draggable=True> This is a draggable Google Link </a>
+
+
+
+---------- Image Element ---------
+<img src="url" />
+	Ex:  <img src="https://picsum.photos/200" />       The 200 means the square will be 200x200.
+
+--> Alt Attribute
+	<img src="https://picsum.photos/200" alt="forest at sunset" />    
