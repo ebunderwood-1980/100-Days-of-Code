@@ -7,7 +7,7 @@ coffee_machine = CoffeeMaker()
 cash_machine = MoneyMachine()
 done = False
 
-while not done:
+while not """ done """:
 # 1. Prompt user by asking what would you like.
     user_choice = input(f"What would you like?  ({menu.get_items()}):  ").lower()
     if user_choice == "off":
@@ -24,10 +24,9 @@ while not done:
             continue
         else:
             if coffee_machine.is_resource_sufficient(drink):
-                if(cash_machine.make_payment(drink.cost)):  
+                if(cash_machine.make_payment(drink.cost)):
                     coffee_machine.make_coffee(drink)
-                
+
             else:
                 # coffee_machine.is_resource_sufficient() should print out error message before we continue.
                 continue
-
