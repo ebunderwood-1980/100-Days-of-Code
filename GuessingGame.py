@@ -1,6 +1,9 @@
 import GuessingArt
+
 # Get your own ascii art at https://patorjk.com/software/taag/#p=display&f=Graffiti&t=Type+Something+&x=none&v=4&h=4&w=80&we=false
 import random
+
+guesses = 0
 
 print(GuessingArt.logo)
 print("Welcome to the Guessing Game!")
@@ -14,7 +17,7 @@ elif difficulty == "hard":
 else:
     print("Incorrect entry, please enter again")
 
-hidden_number = random.randint(1,100)
+hidden_number = random.randint(1, 100)
 
 done = False
 while not done:
