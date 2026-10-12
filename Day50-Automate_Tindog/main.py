@@ -6,7 +6,7 @@ from selenium.webdriver.support import expected_conditions as EC
 import os
 import time
 from selenium.common.exceptions import NoSuchElementException
-from selenium.common.exceptions import ElementClickInterceptedException 
+from selenium.common.exceptions import ElementClickInterceptedException
 
 
 # Variables and Constants
@@ -68,13 +68,13 @@ def tindog_login():
         # Fuck notifications
         not_interested_btn = driver.find_element(By.CLASS_NAME, value="btn-secondary")
         not_interested_btn.click()
-    
+
         # Nom nom them cookies
         time.sleep(2)
         accept_cookies_btn = driver.find_element(By.CLASS_NAME, value="btn-primary")
         accept_cookies_btn.click()
         print("Location, Notification, and Cookie Popups dealt with.")
-        
+
         # Time to start liking them mutts.
         time.sleep(2)
         for n in range(20):
@@ -90,7 +90,7 @@ def tindog_login():
                     time.sleep(2)
             except NoSuchElementException:
                 # Like button not loaded yet OR all dogs have been swiped — wait and retry
-                time.sleep(2)                       
+                time.sleep(2)
         likes = 20
         while likes > 0:
             try:
@@ -108,7 +108,7 @@ def tindog_login():
                 time.sleep(2)
                 like_btn.click()
         print("Pups liked")
-        
+
     except Exception as e:
         print(f"An error has occured during execution: {e}")
 
